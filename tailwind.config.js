@@ -22,5 +22,4 @@ extend: {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
 };
