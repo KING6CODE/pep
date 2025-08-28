@@ -1,28 +1,20 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
-import NavBar from "@/components/NavBar";
-import Footer from "@/components/Footer";
-
-
-const inter = Inter({ subsets: ["latin"] });
-
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export const metadata = {
-title: "PEPS – Performance Prévention Santé",
-description: "Prévention des TMS en entreprise : formations, ergonomie, gestes et postures, étirements, analyse des postes.",
+  title: "PEPS - Performance Prévention Santé",
+  description: "PEPS accompagne Performance, Prévention et Santé.",
 };
 
-
 export default function RootLayout({ children }) {
-return (
-<html lang="fr">
-<body className={`${inter.className} antialiased`}>
-<div className="min-h-screen flex flex-col">
-<NavBar />
-<main className="flex-1">{children}</main>
-<Footer />
-</div>
-</body>
-</html>
-);
+  return (
+    <html lang="fr">
+      <body>
+        <Navbar />
+        <main className="pt-24">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
 }
