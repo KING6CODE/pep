@@ -23,7 +23,7 @@ background: #f7fafc;
 
 /* Boutons */
 .btn-primary {
-@apply inline-flex items-center gap-2 rounded-xl bg-peps.red text-white px-5 py-3 font-semibold shadow hover:opacity-90;
+@apply inline-flex items-center gap-2 rounded-xl bg-peps-red text-white px-5 py-3 font-semibold shadow hover:opacity-90;
 }
 .btn-outline {
 @apply inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-3 font-semibold hover:bg-slate-50;
