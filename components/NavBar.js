@@ -1,51 +1,58 @@
 "use client";
-import { useState } from "react";
+
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
 
-const links = [
-{ href: "/", label: "Accueil" },
-{ href: "/objectif", label: "Notre objectif" },
-{ href: "/moyens", label: "Moyens" },
-{ href: "/formations", label: "Formations" },
-{ href: "/qui-sommes-nous", label: "Qui sommes‑nous" },
-{ href: "/contact", label: "Contact" },
-{ href: "/mentions", label: "Mentions légales" },
-];
+  return (
+    <header className="navbar">
+      <div className="container flex items-center justify-between py-4">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/images/logo-peps.png"
+            alt="PEPS - Performance Prévention Santé"
+            width={150}
+            height={60}
+            priority
+          />
+        </Link>
 
+        {/* Desktop */}
+        <nav className="hidden md:flex items-center gap-8">
+          <Link className="nav-link" href="/">Accueil</Link>
+          <Link className="nav-link" href="/objectif">Objectif</Link>
+          <Link className="nav-link" href="/moyens">Moyens</Link>
+          <Link className="nav-link" href="/formations">Formations</Link>
+          <Link className="nav-link" href="/qui-sommes-nous">Qui sommes-nous</Link>
+          <Link className="btn-primary" href="/contact">Contact</Link>
+        </nav>
 
-export default function NavBar() {
-const [open, setOpen] = useState(false);
-return (
-<header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
-<div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-<Link href="/" className="font-black tracking-tight text-xl flex items-baseline gap-2">
-<span className="text-peps.blue">PEPS</span>
-<span className="text-xs text-slate-500">Performance Prévention Santé</span>
-</Link>
-<nav className="hidden md:flex items-center gap-1">
-{links.map((l) => (
-<Link key={l.href} href={l.href} className="px-3 py-2 rounded-xl text-sm hover:bg-slate-100">
-{l.label}
-</Link>
-))}
-</nav>
-<button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menu">
-{open ? <X /> : <Menu />}
-</button>
-</div>
-{open && (
-<div className="md:hidden border-t border-slate-200 bg-white">
-<nav className="max-w-7xl mx-auto px-6 py-3 grid gap-1">
-{links.map((l) => (
-<Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="px-3 py-2 rounded-xl text-sm hover:bg-slate-100">
-{l.label}
-</Link>
-))}
-</nav>
-</div>
-)}
-</header>
-);
+        {/* Mobile */}
+        <button
+          className="md:hidden text-peps-blue"
+          onClick={() => setOpen(!open)}
+          aria-label="Ouvrir le menu"
+        >
+          {open ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Drawer mobile */}
+      {open && (
+        <div className="md:hidden bg-white shadow-lg flex flex-col gap-4 px-6 py-6">
+          <Link className="nav-link" href="/" onClick={() => setOpen(false)}>Accueil</Link>
+          <Link className="nav-link" href="/objectif" onClick={() => setOpen(false)}>Objectif</Link>
+          <Link className="nav-link" href="/moyens" onClick={() => setOpen(false)}>Moyens</Link>
+          <Link className="nav-link" href="/formations" onClick={() => setOpen(false)}>Formations</Link>
+          <Link className="nav-link" href="/qui-sommes-nous" onClick={() => setOpen(false)}>Qui sommes-nous</Link>
+          <Link className="btn-primary w-fit" href="/contact" onClick={() => setOpen(false)}>Contact</Link>
+        </div>
+      )}
+    </header>
+  );
 }
