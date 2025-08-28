@@ -1,17 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}"
+    "./app/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
         peps: {
-          blue: "#0B3C5D",
-          red: "#E11D48",
+          blue: "#0077C2",   // bleu du logo
+          orange: "#F15A29", // orange du logo
+          slate: "#0F172A",  // gris-ardoise profond (texte)
           sky: "#38BDF8",
-          slate: "#0F172A"
+          red: "#E11D48"     // pour alertes (optionnel)
         }
       },
       boxShadow: {
@@ -19,8 +20,25 @@ module.exports = {
       },
       borderRadius: {
         xxl: "1.25rem"
-      }
+      },
+      typography: ({ theme }) => ({
+        peps: {
+          css: {
+            "--tw-prose-body": theme("colors.slate.700"),
+            "--tw-prose-headings": theme("colors.peps.blue"),
+            "--tw-prose-links": theme("colors.peps.blue"),
+            "--tw-prose-bold": theme("colors.slate.900"),
+            "--tw-prose-quotes": theme("colors.slate.900"),
+            "--tw-prose-hr": theme("colors.slate.300"),
+            a: { textDecoration: "none" }
+          }
+        }
+      })
     }
   },
-  plugins: [require("@tailwindcss/typography")]
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
